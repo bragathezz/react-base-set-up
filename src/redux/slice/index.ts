@@ -3,19 +3,19 @@ import { demoApi } from '../service';
 
 type AsyncAction = {
   isLoading: boolean;
-  data: unknown;
+  data: any;
   error: unknown;
   reFetchApi: any;
 };
 
 type Org = Record<string, AsyncAction>;
 const initialState: Org = {};
-const asyncActionCases = [{ api: demoApi, name: 'loginRes', isLoading: true }];
+const asyncActionCases = [{ api: demoApi, name: 'loginRes', isLoading: true, data: 1 }];
 
 asyncActionCases.forEach((api) => {
   initialState[api.name] = {
     isLoading: api.isLoading,
-    data: [],
+    data: api.data ?? [],
     error: null,
     reFetchApi: null,
   };

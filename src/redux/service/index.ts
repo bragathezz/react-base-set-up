@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import API from '../../axios-set-up/api';
+import store from '../store';
 
 export const demoApi = createAsyncThunk('login', async (bodyParams, thunkAPI) => {
   try {
-    const response = await API.post(`/admin/login`, bodyParams);
+    const response = (await store.getState().demo.loginRes.data) + 1;
     return response;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
