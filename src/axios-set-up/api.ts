@@ -1,13 +1,13 @@
-import axios from "axios";
-import {SESSION} from "../helper/Global";
-import {getSessionStorage, unsetSessionStorage} from "../helper/SessionConfig";
-import {refetchToken} from "../helper/refetch";
+import axios from 'axios';
+import { SESSION } from '../helper/Global';
+import { getSessionStorage, unsetSessionStorage } from '../helper/SessionConfig';
+import { refetchToken } from '../helper/refetch';
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_BASE_API,
+  baseURL: 'https://localhost:3000',
 });
 let isRefreshing = false;
-const TOKEN_PAYLOAD_KEY = "authorization";
+const TOKEN_PAYLOAD_KEY = 'authorization';
 
 const TOKEN = () => getSessionStorage(SESSION.PROJECT_NAME_TOKEN);
 
@@ -20,7 +20,7 @@ API.interceptors.request.use(function (config) {
 
 API.interceptors.response.use(
   // unwrap response data
-  ({data}) => data,
+  ({ data }) => data,
 
   // catch statusCode != 200 responses and format error
   (error) => {
@@ -40,7 +40,7 @@ API.interceptors.response.use(
       }
       return Promise.reject(errorData);
     }
-    return Promise.reject({message: error.message});
+    return Promise.reject({ message: error.message });
   }
 );
 

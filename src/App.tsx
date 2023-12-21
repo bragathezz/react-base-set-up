@@ -3,10 +3,18 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Button } from '@mui/material'
+import { useAppDispatch } from './redux/store'
+import { demoApi } from './redux/service'
+import { useSelector } from 'react-redux'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const dispatch = useAppDispatch()
+  const state = useSelector((state) => state)
+  const handleCheckDispatch = () => {
+    dispatch(demoApi())
+  }
+  console.log(state, "state")
   return (
     <>
       <div>
@@ -19,7 +27,10 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => {
+          setCount((count) => count + 1);
+          handleCheckDispatch()
+        }}>
           count is {count}
         </button>
         <Button variant='loki'></Button>
