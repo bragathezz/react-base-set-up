@@ -3,7 +3,7 @@ import { demoApi } from '../service';
 
 type AsyncAction = {
   isLoading: boolean;
-  data: any;
+  data: unknown;
   error: unknown;
   reFetchApi: any;
 };
@@ -15,7 +15,7 @@ const asyncActionCases = [{ api: demoApi, name: 'loginRes', isLoading: true, dat
 asyncActionCases.forEach((api) => {
   initialState[api.name] = {
     isLoading: api.isLoading,
-    data: api.data ?? [],
+    data: api.data || [],
     error: null,
     reFetchApi: null,
   };

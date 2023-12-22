@@ -1,25 +1,17 @@
-import axios from "axios";
-import {
-  getSessionStorage,
-  setSessionStorage,
-  unsetSessionStorage,
-} from "./SessionConfig";
-import {SESSION} from "./Global";
+import axios from 'axios';
+import { getSessionStorage, setSessionStorage, unsetSessionStorage } from './sessionConfiguration';
+import { SESSION } from './globalHelper';
 
 export const refetchToken = async () => {
   axios({
-    url: process.env.REACT_APP_BASE_API + "admin/refresh",
-    method: "POST",
+    url: process.env.REACT_APP_BASE_API + 'admin/refresh',
+    method: 'POST',
     headers: {
-      Authorization:
-        "Bearer " + getSessionStorage(SESSION.PROJECT_NAME_REFRESH_TOKEN),
+      Authorization: 'Bearer ' + getSessionStorage(SESSION.PROJECT_NAME_REFRESH_TOKEN),
     },
   })
     .then((response) => {
-      setSessionStorage(
-        SESSION.PROJECT_NAME_TOKEN,
-        response.data.authorisation.token
-      );
+      setSessionStorage(SESSION.PROJECT_NAME_TOKEN, response.data.authorisation.token);
       setSessionStorage(SESSION.PROJECT_NAME_EMPLOYEEID, response.data.user.id);
       setSessionStorage(
         SESSION.PROJECT_NAME_REFRESH_TOKEN,
@@ -30,7 +22,7 @@ export const refetchToken = async () => {
     .catch(() => {
       unsetSessionStorage();
       setTimeout(() => {
-        window.location.href = "/login";
+        window.location.href = '/login';
       }, 1000);
     });
 };

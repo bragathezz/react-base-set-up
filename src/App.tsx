@@ -1,26 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { Button } from '@mui/material'
-import { useAppDispatch } from './redux/store'
+import { useAppDispatch, useAppSelector } from './helper/hooks'
 import { demoApi } from './redux/service'
-import { useSelector } from 'react-redux'
 
 function App() {
   const dispatch = useAppDispatch()
-  const { demo } = useSelector((state) => {
+  const { demo } = useAppSelector((state) => {
     return {
-      demo: (state as any).demo.loginRes.data
+      demo: state.demo.loginRes.data
     }
   })
-  const handleCheckDispatch = () => {
-    dispatch(demoApi())
+
+  const handleCheckDispatch = async (data: number) => {
+    try {
+      await dispatch(demoApi(data))
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <>
+      <Button variant='outlined' onClick={() => handleCheckDispatch(-1)}>
+        Decrease
+      </Button>
       {demo}
-      <Button variant='contained' onClick={handleCheckDispatch}>
+      <Button variant='contained' onClick={() => handleCheckDispatch(1)}>
         Increse
       </Button>
     </>
