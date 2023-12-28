@@ -13,7 +13,7 @@ function App() {
 
   const handleCheckDispatch = async (data: number) => {
     try {
-      await dispatch(demoApi(data))
+      await dispatch(demoApi((demo as number) + data))
     } catch (error) {
       console.log(error)
     }

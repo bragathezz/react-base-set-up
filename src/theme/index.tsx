@@ -14,6 +14,7 @@ import { customShadows } from './custom-shadows';
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     loki: true;
+    kang: true
   }
 }
 
