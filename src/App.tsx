@@ -1,7 +1,8 @@
-import './App.css'
 import { Button } from '@mui/material'
-import { useAppDispatch, useAppSelector } from './helper/hooks'
+
+import './App.css'
 import { demoApi } from './redux/service'
+import { useAppDispatch, useAppSelector } from './helper/hooks'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -15,6 +16,7 @@ function App() {
     try {
       await dispatch(demoApi((demo as number) + data))
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error)
     }
   }
