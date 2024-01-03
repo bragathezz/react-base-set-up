@@ -1,9 +1,21 @@
 import { alpha } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
-// ----------------------------------------------------------------------
+import { Palette } from './palette';
+import { TypographyType } from './typography';
+import { CustomShadow } from './custom-shadows';
 
-export function overrides(theme: any) {
+// ----------------------------------------------------------------------
+type ThemeConfig = {
+  palette: Palette;
+  customShadows: CustomShadow;
+  shape: { borderRadius: number };
+  typography: TypographyType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  spacing: any;
+};
+
+export function overrides({ palette, customShadows, shape, typography, spacing }: ThemeConfig) {
   return {
     MuiCssBaseline: {
       styleOverrides: {
@@ -50,7 +62,7 @@ export function overrides(theme: any) {
     MuiBackdrop: {
       styleOverrides: {
         root: {
-          backgroundColor: alpha(theme.palette.grey[900], 0.8),
+          backgroundColor: alpha(palette.grey[900], 0.8),
         },
         invisible: {
           background: 'transparent',
@@ -60,11 +72,11 @@ export function overrides(theme: any) {
     MuiButton: {
       styleOverrides: {
         containedInherit: {
-          color: theme.palette.common.white,
-          backgroundColor: theme.palette.grey[800],
+          color: palette.common.white,
+          backgroundColor: palette.grey[800],
           '&:hover': {
-            color: theme.palette.common.white,
-            backgroundColor: theme.palette.grey[800],
+            color: palette.common.white,
+            backgroundColor: palette.grey[800],
           },
         },
         sizeLarge: {
@@ -79,17 +91,17 @@ export function overrides(theme: any) {
             border: `2px dashed green`,
             color: 'green',
             '&:hover': {
-              color: theme.palette.common.white,
+              color: palette.common.white,
               border: `66px dashed green`,
-              backgroundColor: theme.palette.grey[800],
+              backgroundColor: palette.grey[800],
             },
           },
         },
         {
           props: { variant: 'loki', color: 'secondary' },
           style: {
-            border: `50px dashed ${theme.palette.secondary.main}`,
-            color: theme.palette.secondary.main,
+            border: `50px dashed ${palette.secondary.main}`,
+            color: palette.secondary.main,
           },
         },
         {
@@ -108,16 +120,16 @@ export function overrides(theme: any) {
           props: { variant: 'kang' },
           style: {
             textTransform: 'none',
-            border: `2px dotted ${theme.palette.primary.main}`,
-            color: theme.palette.primary.main,
+            border: `2px dotted ${palette.primary.main}`,
+            color: palette.primary.main,
           },
         },
         {
           props: { variant: 'kang', color: 'secondary' },
           style: {
             fontSize: 18,
-            color: theme.palette.secondary.main,
-            border: `2px dashed ${theme.palette.primary.main}`,
+            color: palette.secondary.main,
+            border: `2px dashed ${palette.primary.main}`,
           },
         },
       ],
@@ -125,8 +137,8 @@ export function overrides(theme: any) {
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: theme.customShadows.card,
-          borderRadius: Number(theme.shape.borderRadius) * 2,
+          boxShadow: customShadows.card,
+          borderRadius: Number(shape.borderRadius) * 2,
           position: 'relative',
           zIndex: 0, // Fix Safari overflow: hidden with border radius
         },
@@ -139,7 +151,7 @@ export function overrides(theme: any) {
       },
       styleOverrides: {
         root: {
-          padding: theme.spacing(3, 3, 0),
+          padding: spacing(3, 3, 0),
         },
       },
     },
@@ -147,7 +159,7 @@ export function overrides(theme: any) {
       styleOverrides: {
         root: {
           [`& .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: alpha(theme.palette.grey[500], 0.24),
+            borderColor: alpha(palette.grey[500], 0.24),
           },
         },
       },
@@ -160,35 +172,35 @@ export function overrides(theme: any) {
     MuiTableCell: {
       styleOverrides: {
         head: {
-          color: theme.palette.text.secondary,
-          backgroundColor: theme.palette.background.neutral,
+          color: palette.text.secondary,
+          backgroundColor: palette.background.neutral,
         },
       },
     },
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          backgroundColor: theme.palette.grey[800],
+          backgroundColor: palette.grey[800],
         },
         arrow: {
-          color: theme.palette.grey[800],
+          color: palette.grey[800],
         },
       },
     },
     MuiTypography: {
       styleOverrides: {
         paragraph: {
-          marginBottom: theme.spacing(2),
+          marginBottom: spacing(2),
         },
         gutterBottom: {
-          marginBottom: theme.spacing(1),
+          marginBottom: spacing(1),
         },
       },
     },
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          ...theme.typography.body2,
+          ...typography.body2,
         },
       },
     },

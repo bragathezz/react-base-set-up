@@ -11,7 +11,6 @@ function App() {
       demo: state.demo.loginRes.data
     }
   })
-
   const handleCheckDispatch = async (data: number) => {
     try {
       await dispatch(demoApi((demo as number) + data))

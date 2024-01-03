@@ -1,7 +1,77 @@
-import { alpha } from '@mui/material/styles';
+import { PaletteOptions, alpha } from '@mui/material/styles';
 
 // ----------------------------------------------------------------------
+type ColorShades = {
+  lighter: string;
+  light: string;
+  main: string;
+  dark: string;
+  darker: string;
+  contrastText: string;
+};
 
+type ColorPalette = {
+  0: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+};
+
+type ActionColors = {
+  hover: string;
+  selected: string;
+  disabled: string;
+  disabledBackground: string;
+  focus: string;
+  hoverOpacity: number;
+  disabledOpacity: number;
+  active: string;
+};
+
+type BaseColors = {
+  primary: ColorShades;
+  secondary: ColorShades;
+  info: ColorShades;
+  success: ColorShades;
+  warning: ColorShades;
+  error: ColorShades;
+  common: {
+    black: string;
+    white: string;
+  };
+  grey: ColorPalette;
+  divider: string;
+  action: ActionColors;
+};
+
+type TextColors = {
+  primary: string;
+  secondary: string;
+  disabled: string;
+};
+
+type BackgroundColors = {
+  // paper: string;
+  // default: string;
+  neutral: string;
+  paper: string;
+  default: string;
+};
+
+export interface Palette extends PaletteOptions {
+  // mode: string;
+
+  // text: TextColors;
+  background: BackgroundColors;
+  // action: ActionColors;
+}
+//  & BaseColors;
 // SETUP COLORS
 
 export const grey = {
@@ -101,7 +171,7 @@ const base = {
 
 // ----------------------------------------------------------------------
 
-export function palette() {
+export function palette(): Palette {
   return {
     ...base,
     mode: 'light',
