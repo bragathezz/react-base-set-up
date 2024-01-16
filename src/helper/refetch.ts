@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { getSessionStorage, setSessionStorage, unsetSessionStorage } from './sessionConfiguration';
+
 import { SESSION } from './globalHelper';
+import { getSessionStorage, setSessionStorage, unsetSessionStorage } from './sessionConfiguration';
 
 export const refetchToken = async () => {
   axios({

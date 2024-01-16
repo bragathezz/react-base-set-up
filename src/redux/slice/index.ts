@@ -1,11 +1,12 @@
-import { CaseReducerActions, createSlice } from '@reduxjs/toolkit';
+import { createSlice, CaseReducerActions } from '@reduxjs/toolkit';
+
 import { demoApi } from '../service';
 
 type AsyncAction = {
   isLoading: boolean;
   data: unknown;
   error: unknown;
-  reFetchApi: any;
+  // reFetchApi: any;
 };
 
 type Org = Record<string, AsyncAction>;
@@ -17,7 +18,7 @@ asyncActionCases.forEach((api) => {
     isLoading: api.isLoading,
     data: api.data || [],
     error: null,
-    reFetchApi: null,
+    // reFetchApi: null,
   };
 });
 
@@ -43,5 +44,5 @@ export const demoSlice = createSlice({
     });
   },
 });
-
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const demoDispatch: CaseReducerActions<{}, 'demoSlice'> = demoSlice.actions;

@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import { refetchToken } from '../helper/refetch';
-import { getSessionStorage, unsetSessionStorage } from '../helper/sessionConfiguration';
 import { SESSION } from '../helper/globalHelper';
+import { getSessionStorage, unsetSessionStorage } from '../helper/sessionConfiguration';
 
 const API = axios.create({
   baseURL: 'https://localhost:3000',
