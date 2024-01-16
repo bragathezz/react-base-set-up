@@ -1,75 +1,28 @@
-import { PaletteOptions, alpha } from '@mui/material/styles';
+import { alpha, PaletteOptions } from '@mui/material/styles';
+import { ColorPartial } from '@mui/material/styles/createPalette';
 
 // ----------------------------------------------------------------------
-type ColorShades = {
-  lighter: string;
-  light: string;
-  main: string;
-  dark: string;
-  darker: string;
-  contrastText: string;
-};
-
-type ColorPalette = {
-  0: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-};
-
-type ActionColors = {
-  hover: string;
-  selected: string;
-  disabled: string;
-  disabledBackground: string;
-  focus: string;
-  hoverOpacity: number;
-  disabledOpacity: number;
-  active: string;
-};
-
-type BaseColors = {
-  primary: ColorShades;
-  secondary: ColorShades;
-  info: ColorShades;
-  success: ColorShades;
-  warning: ColorShades;
-  error: ColorShades;
-  common: {
-    black: string;
-    white: string;
-  };
-  grey: ColorPalette;
-  divider: string;
-  action: ActionColors;
-};
-
-type TextColors = {
-  primary: string;
-  secondary: string;
-  disabled: string;
-};
 
 type BackgroundColors = {
-  // paper: string;
-  // default: string;
-  neutral: string;
-  paper: string;
-  default: string;
+  neutral?: string;
+  paper?: string;
+  default?: string;
 };
 
-export interface Palette extends PaletteOptions {
-  // mode: string;
-
-  // text: TextColors;
+export interface greyProps extends ColorPartial {
+  0?: string;
+}
+export interface customgreyProps {
+  darkRed: string;
+  darkGreyOne: string;
+  darkGreyTwo: string;
+  lightPink: string;
+  darkPink: string;
+}
+export interface PaletteTheme extends PaletteOptions {
   background: BackgroundColors;
-  // action: ActionColors;
+  grey: greyProps;
+  customColor: customgreyProps;
 }
 //  & BaseColors;
 // SETUP COLORS
@@ -81,28 +34,37 @@ export const grey = {
   300: '#DFE3E8',
   400: '#C4CDD5',
   500: '#919EAB',
-  600: '#637381',
+  600: '#898989',
   700: '#454F5B',
   800: '#212B36',
   900: '#161C24',
 };
 
+export const customColor = {
+  darkRed: '#F25C54',
+  darkGreyOne: '#808285',
+  darkGreyTwo: '#686868',
+  lightPink: '#FEECF1',
+  darkPink: '#F1416C',
+};
 export const primary = {
-  lighter: '#D0ECFE',
-  light: '#73BAFB',
-  main: '#1877F2',
-  dark: '#0C44AE',
-  darker: '#042174',
+  lighter: '#C684FF',
+  light: '#fabb72',
+  main: '#F5811F',
+  dark: '#F05B22',
+  darker: '#27097A',
   contrastText: '#FFFFFF',
+  backgoundColorLight: '#DCDCDC',
 };
 
 export const secondary = {
-  lighter: '#EFD6FF',
-  light: '#C684FF',
-  main: '#8E33FF',
-  dark: '#5119B7',
-  darker: '#27097A',
+  lighter: '#2EC4B6',
+  light: '#73BAFB',
+  main: '#00B2FF',
+  dark: '#0C44AE',
+  darker: '#042174',
   contrastText: '#FFFFFF',
+  backgoundColorLight: '#DCDCDC',
 };
 
 export const info = {
@@ -112,23 +74,28 @@ export const info = {
   dark: '#006C9C',
   darker: '#003768',
   contrastText: '#FFFFFF',
+  backgoundColorLight: '#DCDCDC',
+  extralight: '#808285',
 };
 
 export const success = {
   lighter: '#C8FAD6',
-  light: '#5BE49B',
-  main: '#00A76F',
+  light: '#DCF5E7',
+  main: '#50CD89',
   dark: '#007867',
   darker: '#004B50',
   contrastText: '#FFFFFF',
+  backgoundColorLight: '#DCDCDC',
 };
 
 export const warning = {
   lighter: '#FFF5CC',
-  light: '#FFD666',
-  main: '#FFAB00',
+  light: '#FEECF1',
+  main: '#F1416C',
   dark: '#B76E00',
   darker: '#7A4100',
+  extralight: '#F25C54',
+  backgoundColorLight: '#DCDCDC',
   contrastText: grey[800],
 };
 
@@ -163,6 +130,8 @@ const base = {
   success,
   warning,
   error,
+  // extrasparecolor,
+  customColor,
   grey,
   common,
   divider: alpha(grey[500], 0.2),
@@ -171,7 +140,7 @@ const base = {
 
 // ----------------------------------------------------------------------
 
-export function palette(): Palette {
+export function palette(): PaletteTheme {
   return {
     ...base,
     mode: 'light',

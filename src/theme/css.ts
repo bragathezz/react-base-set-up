@@ -4,17 +4,19 @@ import { checkboxClasses } from '@mui/material/Checkbox';
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
 
-import { CustomShadow } from './custom-shadows';
-
 // ----------------------------------------------------------------------
-interface ThemeCustomize extends Theme {
-  customShadows: CustomShadow;
-}
+
 type ThemeConfig = {
-  theme: ThemeCustomize;
-  bgcolor: string;
-  dropdown: string;
+  theme: Theme;
+  bgcolor?: string;
+  dropdown?: string;
 };
+interface Blur {
+  blur?: number;
+  opacity?: number;
+  imgUrl?: string;
+  color?: string;
+}
 
 export const paper = ({ theme, bgcolor, dropdown }: ThemeConfig) => ({
   ...bgBlur({
@@ -72,26 +74,20 @@ export const menuItem = (theme: Theme) => ({
 });
 
 // ----------------------------------------------------------------------
-interface Blur {
-  blur: number;
-  opacity: number;
-  imgUrl?: string;
-  color: string;
-}
 
 export function bgBlur(props: Blur) {
-  const { color = '#000000', blur = 6, opacity = 0.8, imgUrl = '' } = props;
+  const { color = '#000000', blur = 6, opacity = 0.8, imgUrl } = props;
 
   if (imgUrl) {
     return {
-      position: 'relative',
+      // position: 'relative',
       backgroundImage: `url(${imgUrl})`,
       '&:before': {
         position: 'absolute',
         top: 0,
         left: 0,
         zIndex: 9,
-        content: '""',
+        content: '',
         width: '100%',
         height: '100%',
         backdropFilter: `blur(${blur}px)`,

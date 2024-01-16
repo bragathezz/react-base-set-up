@@ -1,19 +1,37 @@
-import { alpha } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import {
+  alpha,
+  TypeText,
+  CommonColors,
+  ThemeOptions,
+  SimplePaletteColorOptions,
+} from '@mui/material/styles';
 
-import { Palette } from './palette';
+import { PaletteTheme } from './palette';
 import { TypographyType } from './typography';
 import { CustomShadow } from './custom-shadows';
 
 // ----------------------------------------------------------------------
-type ThemeConfig = {
-  palette: Palette;
+export type SpacingArgument = number | string;
+
+interface PaletteProps extends PaletteTheme {
+  secondary: SimplePaletteColorOptions;
+  primary: SimplePaletteColorOptions;
+  text: Partial<TypeText>;
+  common: Partial<CommonColors>;
+}
+interface ThemeConfig extends ThemeOptions {
+  palette: PaletteProps;
   customShadows: CustomShadow;
   shape: { borderRadius: number };
   typography: TypographyType;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  spacing: any;
-};
+  spacing: (
+    arg0?: SpacingArgument,
+    arg1?: SpacingArgument,
+    arg2?: SpacingArgument,
+    arg3?: SpacingArgument
+  ) => string;
+}
 
 export function overrides({ palette, customShadows, shape, typography, spacing }: ThemeConfig) {
   return {
@@ -62,7 +80,7 @@ export function overrides({ palette, customShadows, shape, typography, spacing }
     MuiBackdrop: {
       styleOverrides: {
         root: {
-          backgroundColor: alpha(palette.grey[900], 0.8),
+          backgroundColor: alpha(palette.grey[900] || '', 0.8),
         },
         invisible: {
           background: 'transparent',
@@ -137,7 +155,7 @@ export function overrides({ palette, customShadows, shape, typography, spacing }
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: customShadows.card,
+          boxShadow: customShadows?.card || '',
           borderRadius: Number(shape.borderRadius) * 2,
           position: 'relative',
           zIndex: 0, // Fix Safari overflow: hidden with border radius
@@ -159,14 +177,14 @@ export function overrides({ palette, customShadows, shape, typography, spacing }
       styleOverrides: {
         root: {
           [`& .${outlinedInputClasses.notchedOutline}`]: {
-            borderColor: alpha(palette.grey[500], 0.24),
+            borderColor: alpha(palette.grey[500] || '', 0.24),
           },
         },
       },
     },
     MuiPaper: {
       defaultProps: {
-        elevation: 0,
+        elevation: 1,
       },
     },
     MuiTableCell: {

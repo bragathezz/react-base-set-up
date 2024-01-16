@@ -3,76 +3,8 @@
 import { TypographyOptions } from '@mui/material/styles/createTypography';
 
 export interface TypographyType extends TypographyOptions {
-  // fontFamily: string;
-  fontSecondaryFamily: string;
-  // fontWeightRegular: number;
-  // fontWeightMedium: number;
-  fontWeightSemiBold: number;
-  // fontWeightBold: number;
-  // h1: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // h2: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // h3: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // h4: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // h5: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // h6: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // subtitle1: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // subtitle2: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // body1: {
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // body2: {
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // caption: {
-  //   lineHeight: number;
-  //   fontSize: string;
-  // };
-  // overline: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  //   textTransform: string;
-  // };
-  // button: {
-  //   fontWeight: number;
-  //   lineHeight: number;
-  //   fontSize: string;
-  //   textTransform: string;
-  // };
+  fontSecondaryFamily?: string;
+  fontWeightSemiBold?: number;
 }
 
 type PropsType = {
@@ -80,6 +12,7 @@ type PropsType = {
   md: number;
   lg: number;
 };
+
 export function remToPx(value: string) {
   return Math.round(parseFloat(value) * 16);
 }
@@ -102,7 +35,7 @@ export function responsiveFontSizes({ sm, md, lg }: PropsType) {
   };
 }
 
-export const primaryFont = 'Public Sans, sans-serif';
+export const primaryFont = 'Inter, sans-serif';
 export const secondaryFont = 'Barlow, sans-serif';
 
 // ----------------------------------------------------------------------
@@ -113,50 +46,50 @@ export const typography: TypographyType = {
   fontWeightRegular: 400,
   fontWeightMedium: 500,
   fontWeightSemiBold: 600,
-  fontWeightBold: 700,
+  fontWeightBold: 600,
   h1: {
-    fontWeight: 800,
+    fontWeight: 600,
     lineHeight: 80 / 64,
     fontSize: pxToRem(40),
     ...responsiveFontSizes({ sm: 52, md: 58, lg: 64 }),
   },
   h2: {
-    fontWeight: 800,
+    fontWeight: 600,
     lineHeight: 64 / 48,
     fontSize: pxToRem(32),
     ...responsiveFontSizes({ sm: 40, md: 44, lg: 48 }),
   },
   h3: {
-    fontWeight: 700,
+    fontWeight: 550,
     lineHeight: 1.5,
     fontSize: pxToRem(24),
     ...responsiveFontSizes({ sm: 26, md: 30, lg: 32 }),
   },
   h4: {
-    fontWeight: 700,
+    fontWeight: 500,
     lineHeight: 1.5,
     fontSize: pxToRem(20),
     ...responsiveFontSizes({ sm: 20, md: 24, lg: 24 }),
   },
   h5: {
-    fontWeight: 700,
+    fontWeight: 500,
     lineHeight: 1.5,
     fontSize: pxToRem(18),
     ...responsiveFontSizes({ sm: 19, md: 20, lg: 20 }),
   },
   h6: {
-    fontWeight: 700,
+    fontWeight: 500,
     lineHeight: 28 / 18,
     fontSize: pxToRem(17),
     ...responsiveFontSizes({ sm: 18, md: 18, lg: 18 }),
   },
   subtitle1: {
-    fontWeight: 600,
+    fontWeight: 500,
     lineHeight: 1.5,
     fontSize: pxToRem(16),
   },
   subtitle2: {
-    fontWeight: 600,
+    fontWeight: 500,
     lineHeight: 22 / 14,
     fontSize: pxToRem(14),
   },
@@ -179,7 +112,7 @@ export const typography: TypographyType = {
     textTransform: 'uppercase',
   },
   button: {
-    fontWeight: 700,
+    fontWeight: 600,
     lineHeight: 24 / 14,
     fontSize: pxToRem(14),
     textTransform: 'unset',
