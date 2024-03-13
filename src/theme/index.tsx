@@ -1,7 +1,13 @@
 import { useMemo } from 'react';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import { Theme, Shadows, createTheme, ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
+import {
+  Theme,
+  Shadows,
+  useTheme,
+  createTheme,
+  ThemeProvider as MUIThemeProvider,
+} from '@mui/material/styles';
 
 import { shadows } from './shadows';
 import { palette } from './palette';
@@ -11,21 +17,26 @@ import { customShadows } from './custom-shadows';
 
 // ----------------------------------------------------------------------
 
-
-
 export interface ThemeProps extends Theme {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  components?: any
+  components?: any;
 }
 
-export default function ThemeProvider({ children }: { children: React.ReactNode }) {
+export default function ThemeProvider({
+  children,
+  customTheme,
+}: {
+  children: React.ReactNode;
+  customTheme: object | null;
+}) {
+  const theme = useTheme();
   const memoizedValue = useMemo(
     () => ({
-      palette: palette(),
+      palette: palette(customTheme),
       typography,
-      shadows: shadows() as Shadows,
-      customShadows: customShadows(),
-      shape: { borderRadius: 5 },
+      shadows: shadows(theme) as Shadows,
+      customShadows: customShadows(theme),
+      shape: { borderRadius: 8 },
       transitions: {
         duration: {
           shortest: 150,
@@ -38,17 +49,15 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
         },
       },
     }),
-    []
+    [customTheme, theme]
   );
 
-  const theme: ThemeProps = createTheme(memoizedValue);
-  theme.components = overrides(theme);
-
+  const overRideTheme: ThemeProps = createTheme(memoizedValue);
+  overRideTheme.components = overrides(overRideTheme);
   return (
-    <MUIThemeProvider theme={theme}>
+    <MUIThemeProvider theme={overRideTheme}>
       <CssBaseline />
       {children}
     </MUIThemeProvider>
   );
 }
-
